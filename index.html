@@ -8,6 +8,27 @@
 .types,.slots,.history{display:flex;justify-content:center;align-items:center;gap:8px}.types button{padding:7px 14px;border:2px outset #b38a35;background:#31263d;color:#f6e5b7;font-weight:900;cursor:pointer}.types button.on{background:#c78c18;color:#1d1305}.slots{min-height:30px;font:bold 14px sans-serif}.slot{padding:4px 10px;border:1px solid #9f9279;background:#0d0913}.slot b{color:#ffda45}.history{position:absolute;right:20px}.history i{width:30px;height:30px;display:grid;place-items:center;background:#15101d;border:2px ridge #998c76;color:#fff;font-style:normal;font-weight:900}.dealer{position:relative}.pick.selected:after{content:attr(data-order);position:absolute;z-index:4;right:4px;top:4px;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:#e13c2d;color:#fff;font:bold 16px sans-serif;border:3px solid #fff}.bet-area{grid-template-rows:auto auto 1fr auto}.confirm{display:block;margin:3px auto 0;min-width:150px;height:38px;border:4px outset #a54631;background:linear-gradient(#ff8060,#a92519);color:#fff;font-weight:900;cursor:pointer}.confirm:disabled{opacity:.3}
 
 @media(max-width:760px) and (orientation:portrait){html,body{overflow:auto;min-height:100%;height:auto}.game{min-height:100svh;height:auto;grid-template-rows:auto auto auto auto auto;padding-top:max(7px,env(safe-area-inset-top));padding-bottom:max(7px,env(safe-area-inset-bottom))}.header{grid-template-columns:auto 1fr auto}.title{font-size:clamp(22px,7vw,34px);letter-spacing:.08em}.status{gap:5px}.meter,.message{min-height:52px}.meter b{font-size:27px}.table{grid-template-rows:auto auto;overflow:visible}.dealer{min-height:190px;grid-template-columns:55px 1fr;position:relative}.dealer-face{left:58px;width:58px;height:58px;border-width:3px}.parent-name{left:52px;top:calc(50% + 28px);width:72px;font-size:10px}.change-parent{left:2px;top:2px;padding:4px;font-size:9px}.dealer-card{height:145px}.history{top:4px}.types{flex-wrap:wrap}.types button{padding:5px 8px;font-size:11px}.slots{flex-wrap:wrap;font-size:10px}.picks{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;width:100%;padding:4px 0}.pick{width:100%;height:auto;aspect-ratio:1250/2049}.pick:hover,.pick.selected{transform:none}.controls{gap:5px}.controls button{min-width:calc(25% - 5px);height:40px;padding:2px;font-size:9px}.footer{padding-bottom:env(safe-area-inset-bottom)}.parent-panel{padding:12px;border-width:5px}.parent-list{gap:6px}.parent-card{padding:4px;border-width:3px}.parent-card b{font-size:16px}.parent-card span{font-size:10px}}
+
+/* v0.8 iPhone portrait: keep Mekki/history clear of dealer card */
+@media(max-width:760px) and (orientation:portrait){
+  .dealer{min-height:285px;padding-top:86px;align-items:start}
+  .history{top:4px;right:2px;left:auto;z-index:6}
+  .dealer-card{margin-top:8px;height:145px;z-index:2}
+  .dealer-face{top:104px}
+  .parent-name{top:166px}
+  .change-parent{top:92px}
+  .label{align-self:center}
+}
+
+/* v0.9 iPhone portrait: separate history and dealer card with a fixed clear zone */
+@media(max-width:760px) and (orientation:portrait){
+  .dealer{min-height:390px;padding-top:190px;align-items:start}
+  .history{top:4px;right:2px;left:auto;z-index:6}
+  .dealer-card{margin-top:12px;height:145px;z-index:2}
+  .dealer-face{top:128px}
+  .parent-name{top:190px}
+  .change-parent{top:116px}
+}
 </style><style>
 .history{right:12px;gap:5px;padding:20px 8px 7px;border:3px ridge #8f826d;background:#0d0913cc;box-shadow:0 7px 12px #0009}
 .history:before{content:"目木・過去六回";position:absolute;top:3px;left:0;width:100%;text-align:center;color:#d8c99d;font:bold 11px sans-serif}
@@ -18,6 +39,17 @@
 @media(max-width:900px){.history .hist-card{width:30px}.history{gap:2px;right:2px}.history:before{font-size:8px}}
 
 @media(max-width:760px) and (orientation:portrait){html,body{overflow:auto;min-height:100%;height:auto}.game{min-height:100svh;height:auto;grid-template-rows:auto auto auto auto auto;padding-top:max(7px,env(safe-area-inset-top));padding-bottom:max(7px,env(safe-area-inset-bottom))}.header{grid-template-columns:auto 1fr auto}.title{font-size:clamp(22px,7vw,34px);letter-spacing:.08em}.status{gap:5px}.meter,.message{min-height:52px}.meter b{font-size:27px}.table{grid-template-rows:auto auto;overflow:visible}.dealer{min-height:190px;grid-template-columns:55px 1fr;position:relative}.dealer-face{left:58px;width:58px;height:58px;border-width:3px}.parent-name{left:52px;top:calc(50% + 28px);width:72px;font-size:10px}.change-parent{left:2px;top:2px;padding:4px;font-size:9px}.dealer-card{height:145px}.history{top:4px}.types{flex-wrap:wrap}.types button{padding:5px 8px;font-size:11px}.slots{flex-wrap:wrap;font-size:10px}.picks{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;width:100%;padding:4px 0}.pick{width:100%;height:auto;aspect-ratio:1250/2049}.pick:hover,.pick.selected{transform:none}.controls{gap:5px}.controls button{min-width:calc(25% - 5px);height:40px;padding:2px;font-size:9px}.footer{padding-bottom:env(safe-area-inset-bottom)}.parent-panel{padding:12px;border-width:5px}.parent-list{gap:6px}.parent-card{padding:4px;border-width:3px}.parent-card b{font-size:16px}.parent-card span{font-size:10px}}
+
+/* v0.8 iPhone portrait: keep Mekki/history clear of dealer card */
+@media(max-width:760px) and (orientation:portrait){
+  .dealer{min-height:285px;padding-top:86px;align-items:start}
+  .history{top:4px;right:2px;left:auto;z-index:6}
+  .dealer-card{margin-top:8px;height:145px;z-index:2}
+  .dealer-face{top:104px}
+  .parent-name{top:166px}
+  .change-parent{top:92px}
+  .label{align-self:center}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
