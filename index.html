@@ -82,10 +82,24 @@
  .picks{min-height:0;padding:2px 0;gap:2px;align-items:center}.pick{max-height:122px}.pick:before{width:20px;height:20px;font-size:12px}.confirm{height:31px;min-width:140px;margin:1px auto 0;border-width:3px;font-size:11px}
  .controls{gap:3px;flex-wrap:wrap}.controls button{min-width:calc(25% - 4px);height:34px;border-width:3px;font-size:8px}.footer{font-size:7px;line-height:1.15;padding:0}
 }
+
+/* v1.1 iPhone portrait: keep the wager-confirm button visible in the one-screen layout */
+@media(max-width:760px) and (orientation:portrait){
+ .game{grid-template-rows:auto auto minmax(0,1fr) auto auto auto}
+ .table{grid-template-rows:minmax(190px,.9fr) minmax(220px,1.1fr)}
+ .dealer{padding-top:70px!important}
+ .dealer-card{height:105px!important}
+ .dealer-face{top:76px!important;width:48px;height:48px}
+ .parent-name{top:126px!important}
+ .history .hist-card{width:25px}
+ .pick{max-height:110px}
+ .confirm-main{display:block!important;position:relative!important;z-index:20;width:min(72%,300px);height:30px;min-height:30px;margin:1px auto;border-width:3px;font-size:11px;flex:none}
+ .controls button{height:32px}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
-<section class="table"><div class="dealer"><button class="change-parent" id="changeParent">親変更</button><div class="label">親の手本</div><img id="dealerFace" class="dealer-face" src="assets/characters/woman.png" alt=""><span class="parent-name" id="parentName">麗子</span><div id="dealerCard" class="dealer-card back"></div><div class="history" id="history"></div></div><div class="bet-area"><div class="types" id="types"></div><div class="slots" id="slots"></div><div class="picks" id="picks"></div><button class="confirm" id="confirmBtn" disabled>この張りで勝負</button></div></section>
+<section class="table"><div class="dealer"><button class="change-parent" id="changeParent">親変更</button><div class="label">親の手本</div><img id="dealerFace" class="dealer-face" src="assets/characters/woman.png" alt=""><span class="parent-name" id="parentName">麗子</span><div id="dealerCard" class="dealer-card back"></div><div class="history" id="history"></div></div><div class="bet-area"><div class="types" id="types"></div><div class="slots" id="slots"></div><div class="picks" id="picks"></div></div></section><button class="confirm confirm-main" id="confirmBtn" disabled>この張りで勝負</button>
 <section class="controls"><button id="betBtn">BET +10</button><button id="maxBtn">MAX BET</button><button class="red" id="startBtn">親 入りました</button><button id="clearBtn">張り直し</button><button id="soundBtn">SOUND ON</button><button id="fullBtn">FULL SCREEN</button><button id="resetBtn">RESET</button></section>
 <footer class="footer">大→中→止→角の順に札を選択｜目木は直近6回の出目｜ゲーム内クレジット専用　<b>©2026 YOSHiYUKi</b><br>札絵: Louie Mantia / CC BY-SA 4.0</footer>
 </main><script>
