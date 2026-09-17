@@ -113,6 +113,29 @@
  .confirm-main{height:29px;min-height:29px;margin:0 auto}
  .controls button{height:31px}
 }
+
+/* v1.3 iPhone portrait: clean fixed-flow layout; no overlap, no scroll */
+@media(max-width:760px) and (orientation:portrait){
+ html,body{height:100%;min-height:100%;overflow:hidden!important}
+ body{position:fixed;inset:0}
+ .game{height:100svh!important;min-height:0!important;overflow:hidden!important;display:grid!important;grid-template-rows:42px 108px minmax(0,1fr) 29px 68px 20px!important;gap:3px!important;padding:4px 5px 3px!important;border-width:4px!important}
+ .header{height:42px!important;min-height:42px!important}.title{font-size:clamp(19px,6vw,28px)!important}.crest{width:34px!important;height:34px!important}.credit{font-size:21px!important}.credit small{font-size:9px!important}
+ .status{height:108px!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:54px 51px!important;gap:3px!important}.meter,.message{min-height:0!important;height:auto!important;border-width:3px!important}.meter b{font-size:22px!important}.message{grid-column:1/-1!important;grid-row:2!important;font-size:clamp(14px,4vw,19px)!important;padding:2px!important}
+ .table{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:58% 42%!important;gap:2px!important;overflow:hidden!important}
+ .dealer{height:100%!important;min-height:0!important;padding:0!important;display:block!important;position:relative!important;border-bottom:2px solid #887d9266!important}
+ .history{top:3px!important;right:2px!important;left:auto!important;gap:2px!important;padding:15px 3px 3px!important;border-width:2px!important;z-index:6!important}.history:before{font-size:7px!important}.history .hist-card{width:25px!important}
+ .dealer-card{position:absolute!important;left:50%!important;top:70px!important;transform:translateX(-50%)!important;height:105px!important;margin:0!important;z-index:2!important}
+ .label{position:absolute!important;left:7px!important;top:126px!important;width:58px!important;text-align:left!important;font-size:18px!important;line-height:1.8!important;z-index:4!important}
+ .dealer-face{left:66px!important;top:122px!important;width:48px!important;height:48px!important;border-width:3px!important;z-index:4!important}.parent-name{left:60px!important;top:171px!important;width:60px!important;font-size:9px!important;z-index:4!important}.change-parent{left:2px!important;top:111px!important;font-size:8px!important;padding:3px!important;z-index:5!important}
+ .bet-area{height:100%!important;min-height:0!important;display:grid!important;grid-template-rows:25px 24px minmax(0,1fr)!important;gap:1px!important;overflow:hidden!important}
+ .types{height:25px!important;gap:2px!important;flex-wrap:nowrap!important}.types button{height:24px!important;padding:1px 4px!important;font-size:9px!important;white-space:nowrap!important}
+ .slots{height:24px!important;min-height:24px!important;gap:2px!important;font-size:8px!important;flex-wrap:nowrap!important}.slot{padding:1px 4px!important}
+ .picks{height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:3px!important;align-items:start!important;padding:2px 0 0!important;overflow:visible!important}
+ .pick{width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:1250/2049!important;align-self:start!important;border-width:3px!important}.pick:before{width:20px!important;height:20px!important;font-size:12px!important}.pick:hover,.pick.selected{transform:none!important}
+ .confirm-main{display:block!important;position:relative!important;z-index:20!important;width:min(72%,300px)!important;height:29px!important;min-height:29px!important;margin:0 auto!important;border-width:3px!important;font-size:10px!important}
+ .controls{height:68px!important;display:flex!important;align-content:center!important;gap:3px!important;overflow:hidden!important}.controls button{min-width:calc(25% - 4px)!important;height:31px!important;border-width:3px!important;font-size:8px!important;padding:1px!important}
+ .footer{height:20px!important;font-size:7px!important;line-height:1.1!important;overflow:hidden!important;padding:0!important}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
