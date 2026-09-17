@@ -163,6 +163,13 @@
  .bet-area{grid-template-rows:25px 24px minmax(0,1fr)!important}
  .picks{padding-top:1px!important}
 }
+
+/* v1.6: device-independent iPhone portrait fit. Keep the v1.5 layout, scale the whole board as one unit. */
+@media(max-width:760px) and (orientation:portrait){
+ html,body{width:100%;height:100%;overflow:hidden!important;background:#15101f!important}
+ body{position:fixed!important;inset:0!important}
+ .game{position:absolute!important;left:calc(50% - 207px)!important;top:0!important;width:414px!important;height:685px!important;min-width:414px!important;min-height:685px!important;transform:scale(var(--fit,1))!important;transform-origin:top center!important;overflow:hidden!important}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
@@ -187,5 +194,21 @@ function reveal(){if(phase!=='choosing'||selections.length!==type)return;credits
 $('startBtn').onclick=start;$('confirmBtn').onclick=reveal;$('clearBtn').onclick=()=>{if(phase==='choosing'){selections=[];render()}};$('betBtn').onclick=()=>{if(phase!=='ready')return;bet=bet>=100?10:bet+10;sfx('click');render()};$('maxBtn').onclick=()=>{if(phase!=='ready')return;bet=Math.min(100,credits);sfx('click');render()};$('soundBtn').onclick=()=>{soundOn=!soundOn;localStorage.setItem('tehonSound',soundOn?'on':'off');$('soundBtn').textContent=soundOn?'SOUND ON':'SOUND OFF';if(soundOn)sfx('click')};$('fullBtn').onclick=async()=>{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()};$('resetBtn').onclick=()=>{if(confirm('クレジットと目木を初期化しますか？')){credits=1000;history=[];localStorage.setItem('tehonCredits',credits);localStorage.setItem('tehonHistory','[]');phase='ready';selections=[];$('dealerCard').className='dealer-card back';$('dealerCard').innerHTML='';$('message').textContent='張り方を決めて「親 入りました」';render()}};render();
 function setParent(key){parent=key;localStorage.setItem('tehonParent',key);$('dealerFace').src='assets/characters/'+parents[key].face;$('parentName').textContent=parents[key].name;$('parentSelect').style.display='none';$('message').textContent=parents[key].name+'と勝負　張り方を選べ'}
 [...document.querySelectorAll('.parent-card')].forEach(el=>el.onclick=()=>setParent(el.dataset.parent));$('changeParent').onclick=()=>{if(phase==='ready')$('parentSelect').style.display='grid'};if(parent&&parents[parent])setParent(parent);else $('parentSelect').style.display='grid';
+
+function fitBoardToViewport(){
+  if(!window.matchMedia('(max-width:760px) and (orientation:portrait)').matches){
+    document.documentElement.style.removeProperty('--fit'); return;
+  }
+  const vv=window.visualViewport;
+  const vw=vv ? vv.width : window.innerWidth;
+  const vh=vv ? vv.height : window.innerHeight;
+  const scale=Math.min(vw/414, vh/685);
+  document.documentElement.style.setProperty('--fit', String(Math.max(0.5, scale)));
+}
+fitBoardToViewport();
+window.addEventListener('resize',fitBoardToViewport,{passive:true});
+window.addEventListener('orientationchange',()=>setTimeout(fitBoardToViewport,120),{passive:true});
+if(window.visualViewport){window.visualViewport.addEventListener('resize',fitBoardToViewport,{passive:true});}
+
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
