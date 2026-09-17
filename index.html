@@ -136,6 +136,16 @@
  .controls{height:68px!important;display:flex!important;align-content:center!important;gap:3px!important;overflow:hidden!important}.controls button{min-width:calc(25% - 4px)!important;height:31px!important;border-width:3px!important;font-size:8px!important;padding:1px!important}
  .footer{height:20px!important;font-size:7px!important;line-height:1.1!important;overflow:hidden!important;padding:0!important}
 }
+
+/* v1.4 iPhone portrait: give the child cards ~30px more vertical room without moving the bottom controls */
+@media(max-width:760px) and (orientation:portrait){
+ .table{grid-template-rows:53% 47%!important}
+ .dealer-card{top:58px!important;height:103px!important}
+ .label{top:112px!important}
+ .dealer-face{top:108px!important}
+ .parent-name{top:157px!important}
+ .change-parent{top:97px!important}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
