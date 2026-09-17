@@ -96,6 +96,23 @@
  .confirm-main{display:block!important;position:relative!important;z-index:20;width:min(72%,300px);height:30px;min-height:30px;margin:1px auto;border-width:3px;font-size:11px;flex:none}
  .controls button{height:32px}
 }
+
+/* v1.2 iPhone portrait: show all six child cards fully, keep confirm button, no scroll */
+@media(max-width:760px) and (orientation:portrait){
+ .table{grid-template-rows:minmax(172px,.78fr) minmax(238px,1.22fr)!important}
+ .dealer{padding-top:66px!important}
+ .dealer-card{height:100px!important}
+ .dealer-face{top:72px!important;width:46px;height:46px}
+ .parent-name{top:120px!important}
+ .history .hist-card{width:24px}
+ .bet-area{grid-template-rows:auto auto minmax(0,1fr)!important;overflow:hidden}
+ .types button{padding:2px 5px!important}
+ .slots{min-height:20px!important}
+ .picks{height:100%;min-height:0!important;align-items:end!important;padding:1px 0 2px!important;overflow:hidden}
+ .pick{width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:1250/2049!important;align-self:end}
+ .confirm-main{height:29px;min-height:29px;margin:0 auto}
+ .controls button{height:31px}
+}
 </style></head><body><section class="parent-select" id="parentSelect"><div class="parent-panel"><h2>親を選ぶ</h2><div class="parent-list"><button class="parent-card" data-parent="woman"><img src="assets/characters/woman.png" alt="若い女性"><b>麗子</b><span>初級｜順目と連続を好む</span></button><button class="parent-card" data-parent="yakuza"><img src="assets/characters/yakuza.png" alt="ヤクザ"><b>鬼塚</b><span>中級｜根っこと反対目を好む</span></button><button class="parent-card" data-parent="master"><img src="assets/characters/master.png" alt="老練な博徒"><b>玄斎</b><span>上級｜こちらの癖を読んでくる</span></button></div></div></section><main class="game">
 <header class="header"><div class="title">堅気屋 手本引き</div><div class="crest"></div><div class="credit"><small>CREDIT</small><span id="credits">1000</span></div></header>
 <section class="status"><div class="meter"><span>BET</span><b id="bet">10</b></div><div class="message" id="message">張り方を決めて「親 入りました」</div><div class="meter"><span>張り方</span><b id="typeName">スイチ</b></div></section>
